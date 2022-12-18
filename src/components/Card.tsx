@@ -28,13 +28,21 @@ const Card = ({
 
   return (
     <div className="flex w-64 flex-col justify-around rounded-lg bg-white p-5">
+      <div className="mb-3 w-fit self-end rounded-lg bg-black px-3 py-1 text-sm text-white">
+        {rating.rate}/5.0 ({rating.count})
+      </div>
       <img
         className="h-52 self-center object-contain"
         src={image}
         alt={description}
       />
       <p className="my-2 font-bold">{title}</p>
-      <Button onClick={() => addProductToCart(id, title)}>Add to Cart</Button>
+      <div className="flex items-center justify-between font-bold">
+        <div className="text-xl">${price}</div>
+        <Button onClick={() => addProductToCart(id, title, price)}>
+          Add to Cart
+        </Button>
+      </div>
     </div>
   );
 };

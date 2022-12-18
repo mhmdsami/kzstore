@@ -9,7 +9,7 @@ interface Container {
 const Container = ({ products, className }: Container) => {
   return (
     <div
-      className={`${className} mx-auto mx-10 mb-20 grid grid-cols-1 gap-y-10 lg:mx-20 lg:grid-cols-2 xl:grid-cols-3`}
+      className={`${className} mx-auto mx-10 mb-20 grid grid-cols-1 gap-y-10 lg:mx-20 xl:grid-cols-2`}
     >
       {products.map((product: Product, idx) => (
         <Card key={idx} {...product} />

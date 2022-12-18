@@ -7,7 +7,7 @@ interface CartContextProvider {
 
 interface CartContext {
   cart: CartProduct[];
-  addProductToCart: (id: number, name: string) => void;
+  addProductToCart: (id: number, name: string, price: number) => void;
 }
 
 const defaultContext: CartContext = {
@@ -24,14 +24,14 @@ const CartContextProvider = ({ children }: CartContextProvider) => {
     return cart.find((p) => p.id === id);
   };
 
-  const addProductToCart = (id: number, name: string) => {
+  const addProductToCart = (id: number, name: string, pricePerItem: number) => {
     if (productExistsInCart(id)) {
       const newCart = cart.map((product) =>
         product.id === id ? { ...product, count: product.count + 1 } : product
       );
       setCart(newCart);
     } else {
-      setCart([...cart, { id, name, count: 1 }]);
+      setCart([...cart, { id, name, pricePerItem, count: 1 }]);
     }
   };
 

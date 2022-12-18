@@ -8,21 +8,37 @@ interface CartProps {
 export interface CartProduct {
   id: number;
   name: string;
+  pricePerItem: number;
   count: number;
 }
+
+const getTotalPrice = (cart: CartProduct[]) => {
+  let total = 0;
+  cart.forEach((p) => (total += p.count * p.pricePerItem));
+  return total.toFixed(2);
+};
 
 const Cart = ({ className }: CartProps) => {
   const { cart } = useContext(CartContext);
 
   return (
     <div
-      className={`${className} fixed right-0 hidden h-screen w-80 flex-col gap-3 overflow-scroll rounded-l-xl bg-white p-10 sm:flex`}
+      className={`${className} fixed right-0 hidden h-[90vh] w-1/2 flex-col gap-3 overflow-scroll rounded-l-xl bg-white p-10 sm:flex`}
     >
       <div className="text-xl font-bold uppercase">Cart</div>
-      {cart.map(({ name, count }: CartProduct, idx) => (
-        <div key={idx} className="flex justify-between">
-          <div className="w-2/3">{name}</div>
-          <div className="font-bold">{count}</div>
+      <div className="flex justify-between">
+        <div className="text-xl font-bold">Total</div>
+        <div className="w-fit rounded-md bg-black px-2 py-1 text-center font-bold text-white">
+          ${getTotalPrice(cart)}
+        </div>
+      </div>
+      {cart.map(({ name, count, pricePerItem }: CartProduct, idx) => (
+        <div key={idx} className="grid grid-cols-4 place-content-between">
+          <div className="col-span-2">{name}</div>
+          <div className="place-self-end font-bold">{count}</div>
+          <div className="h-fit w-fit place-self-end rounded-md bg-black px-2 py-1 text-center text-white">
+            ${(count * pricePerItem).toFixed(2)}
+          </div>
         </div>
       ))}
     </div>

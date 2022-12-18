@@ -22,7 +22,7 @@ const App = () => {
       <Header />
       <CartContextProvider>
         <div className={isLoading ? "hidden" : "flex"}>
-          <Container products={products} className="w-3/4" />
+          <Container products={products} className="w-1/2" />
           <Cart />
         </div>
       </CartContextProvider>
