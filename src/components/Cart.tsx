@@ -24,7 +24,7 @@ const Cart = ({ className }: CartProps) => {
 
   return (
     <div
-      className={`${className} fixed right-0 hidden h-[90vh] w-1/2 flex-col gap-3 overflow-scroll rounded-l-xl bg-white p-10 sm:flex`}
+      className={`${className} fixed right-0 bottom-0 hidden h-[80vh] w-1/2 flex-col gap-3 overflow-scroll rounded-tl-xl bg-white p-10 sm:flex`}
     >
       <div className="text-xl font-bold uppercase">Cart</div>
       <div className="flex justify-between">

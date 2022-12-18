@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="m-10 flex justify-center text-3xl font-bold text-white">
+    <header className="flex justify-center p-[7.2vh] text-3xl font-bold text-white">
       KzStore
     </header>
   );

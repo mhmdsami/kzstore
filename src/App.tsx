@@ -20,12 +20,16 @@ const App = () => {
   return (
     <div className="flex flex-col gap-2">
       <Header />
-      <CartContextProvider>
-        <div className={isLoading ? "hidden" : "flex"}>
+      {isLoading ? (
+        <div className="flex h-[70vh] items-center justify-center text-4xl text-white">
+          Loading...
+        </div>
+      ) : (
+        <CartContextProvider>
           <Container products={products} className="w-1/2" />
           <Cart />
-        </div>
-      </CartContextProvider>
+        </CartContextProvider>
+      )}
     </div>
   );
 };
