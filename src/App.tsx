@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header, Container, Cart } from "./components";
-import type { Product, CartProduct } from "./components";
+import CartContextProvider from "./store/CartContext";
+import type { Product } from "./components";
 
 const App = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,10 +20,12 @@ const App = () => {
   return (
     <div className="flex flex-col gap-2">
       <Header />
-      <div className={isLoading ? "hidden" : "flex"}>
-        <Container products={products} className="w-3/4" />
-        <Cart />
-      </div>
+      <CartContextProvider>
+        <div className={isLoading ? "hidden" : "flex"}>
+          <Container products={products} className="w-3/4" />
+          <Cart />
+        </div>
+      </CartContextProvider>
     </div>
   );
 };

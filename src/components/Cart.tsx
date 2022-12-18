@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../store/CartContext";
 
 interface CartProps {
@@ -12,16 +12,17 @@ export interface CartProduct {
 }
 
 const Cart = ({ className }: CartProps) => {
-  const [cart, setCart] = useState<CartProduct[]>([]);
+  const { cart } = useContext(CartContext);
 
   return (
     <div
-      className={`${className} fixed right-0 hidden h-screen w-72 flex-col rounded-l-xl bg-white p-10 sm:flex`}
+      className={`${className} fixed right-0 hidden h-screen w-80 flex-col gap-3 overflow-scroll rounded-l-xl bg-white p-10 sm:flex`}
     >
       <div className="text-xl font-bold uppercase">Cart</div>
-      {cart.map(({ id, count }: CartProduct) => (
-        <div>
-          {id}: {count}
+      {cart.map(({ name, count }: CartProduct, idx) => (
+        <div key={idx} className="flex justify-between">
+          <div className="w-2/3">{name}</div>
+          <div className="font-bold">{count}</div>
         </div>
       ))}
     </div>

@@ -1,4 +1,6 @@
 import { Button } from "./index";
+import React, { useContext } from "react";
+import { CartContext } from "../store/CartContext";
 
 export interface Product {
   id: number;
@@ -22,6 +24,8 @@ const Card = ({
   image,
   rating,
 }: Product) => {
+  const { addProductToCart } = useContext(CartContext);
+
   return (
     <div className="flex w-64 flex-col justify-around rounded-lg bg-white p-5">
       <img
@@ -30,7 +34,7 @@ const Card = ({
         alt={description}
       />
       <p className="my-2 font-bold">{title}</p>
-      <Button />
+      <Button onClick={() => addProductToCart(id, title)}>Add to Cart</Button>
     </div>
   );
 };

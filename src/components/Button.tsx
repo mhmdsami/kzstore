@@ -1,16 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const addToCart = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-  const element = event.target as HTMLDivElement;
-  console.log(element);
-};
-const Button = () => {
+interface Button {
+  children: ReactNode;
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+const Button = ({ children, onClick }: Button) => {
   return (
     <div
       className="w-fit cursor-pointer select-none self-end rounded-md bg-black px-3 py-2 font-medium text-white"
-      onClick={addToCart}
+      onClick={onClick}
     >
-      Add to Cart
+      {children}
     </div>
   );
 };
