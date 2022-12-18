@@ -39,7 +39,10 @@ const Card = ({
       <p className="my-2 font-bold">{title}</p>
       <div className="flex items-center justify-between font-bold">
         <div className="text-xl">${price}</div>
-        <Button onClick={() => addProductToCart(id, title, price)}>
+        <Button
+          className="px-3 py-2"
+          onClick={() => addProductToCart(id, title, price)}
+        >
           Add to Cart
         </Button>
       </div>

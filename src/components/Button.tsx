@@ -1,14 +1,15 @@
 import React, { ReactNode } from "react";
 
 interface Button {
+  className?: string;
   children: ReactNode;
   onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Button = ({ children, onClick }: Button) => {
+const Button = ({ className, children, onClick }: Button) => {
   return (
     <div
-      className="w-fit cursor-pointer select-none rounded-md bg-black px-3 py-2 font-medium text-white"
+      className={`${className} w-fit cursor-pointer select-none rounded-md bg-black font-medium text-white`}
       onClick={onClick}
     >
       {children}

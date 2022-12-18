@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Button } from "./";
 import { CartContext } from "../store/CartContext";
 
 interface CartProps {
@@ -19,7 +20,7 @@ const getTotalPrice = (cart: CartProduct[]) => {
 };
 
 const Cart = ({ className }: CartProps) => {
-  const { cart } = useContext(CartContext);
+  const { cart, removeProduct } = useContext(CartContext);
 
   return (
     <div
@@ -32,13 +33,19 @@ const Cart = ({ className }: CartProps) => {
           ${getTotalPrice(cart)}
         </div>
       </div>
-      {cart.map(({ name, count, pricePerItem }: CartProduct, idx) => (
-        <div key={idx} className="grid grid-cols-4 place-content-between">
+      {cart.map(({ id, name, count, pricePerItem }: CartProduct, idx) => (
+        <div key={idx} className="grid grid-cols-5 place-content-between">
           <div className="col-span-2">{name}</div>
           <div className="place-self-end font-bold">{count}</div>
           <div className="h-fit w-fit place-self-end rounded-md bg-black px-2 py-1 text-center text-white">
             ${(count * pricePerItem).toFixed(2)}
           </div>
+          <Button
+            className="place-self-end px-2 py-1"
+            onClick={() => removeProduct(id)}
+          >
+            ❌
+          </Button>
         </div>
       ))}
     </div>

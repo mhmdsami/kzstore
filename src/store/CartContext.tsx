@@ -8,11 +8,13 @@ interface CartContextProvider {
 interface CartContext {
   cart: CartProduct[];
   addProductToCart: (id: number, name: string, price: number) => void;
+  removeProduct: (id: number) => void;
 }
 
 const defaultContext: CartContext = {
   cart: [],
   addProductToCart: () => {},
+  removeProduct: () => {},
 };
 
 export const CartContext = createContext<CartContext>(defaultContext);
@@ -35,9 +37,17 @@ const CartContextProvider = ({ children }: CartContextProvider) => {
     }
   };
 
+  const removeProduct = (id: number) => {
+    console.log("lol");
+    const newCart = cart.filter((p) => p.id !== id);
+    console.log(newCart);
+    setCart(newCart);
+  };
+
   const value = {
     cart,
     addProductToCart,
+    removeProduct,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
